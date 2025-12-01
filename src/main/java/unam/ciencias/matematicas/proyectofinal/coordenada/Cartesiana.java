@@ -1,10 +1,10 @@
-package unam.ciencias.matematicas.proyectofinal.coordenadas;
+package unam.ciencias.matematicas.proyectofinal.coordenada;
 
 
 /**
  * Clase que representa coordenadas cartesianas (x, y, z).
  */
-public class Cartesianas implements Coordenadas {
+public class Cartesiana implements Coordenada {
 
     /** Valores de la coordenada. */
     private double x, y, z;
@@ -14,7 +14,7 @@ public class Cartesianas implements Coordenadas {
      * @param x valor en eje X.
      * @param y valor en eje Y.
      */
-    public Cartesianas(double x, double y) {
+    public Cartesiana(double x, double y) {
         // Aquí va su código.
     }
 
@@ -24,7 +24,7 @@ public class Cartesianas implements Coordenadas {
      * @param y valor en eje Y.
      * @param z valor en eje Z.
      */
-    public Cartesianas(double x, double y, double z) {
+    public Cartesiana(double x, double y, double z) {
         // Aquí va su código.
     }
 
@@ -39,7 +39,7 @@ public class Cartesianas implements Coordenadas {
     }
 
     @Override 
-    public Cartesianas aCartesianas() {
+    public Cartesiana aCartesiana() {
         // Aquí va su código: devolver this.
     }
 

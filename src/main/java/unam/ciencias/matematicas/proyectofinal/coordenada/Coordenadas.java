@@ -1,4 +1,4 @@
-package unam.ciencias.matematicas.proyectofinal.coordenadas;
+package unam.ciencias.matematicas.proyectofinal.coordenada;
 
 public class Coordenadas {
 
@@ -18,7 +18,7 @@ public interface Coordenada {
      * Convierte la coordenada a su representación en cartesianas.
      * @return coordenada equivalente en cartesianas.
      */
-    public Cartesianas aCartesianas();
+    public Cartesiana aCartesianas();
 
     /**
      * Regresa una representación en cadena de la coordenada.
