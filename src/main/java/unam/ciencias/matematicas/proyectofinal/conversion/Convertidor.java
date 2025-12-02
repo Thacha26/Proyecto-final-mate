@@ -3,65 +3,60 @@ package unam.ciencias.matematicas.proyectofinal.conversion;
 import unam.ciencias.matematicas.proyectofinal.coordenada.*;
 
 /**
- * Clase que maneja la lógica de conversión entre cualquier tipo de coordenada.
- * Aplica el principio de inversión de dependencias: solo trabaja con la interfaz Coordenada.
+ * Clase que maneja la lógica de conversión.
+ * Se han ajustado las fórmulas para coincidir con la hoja de apuntes proporcionada:
+ * 1. Theta se calcula con atan2 (que equivale a la definición por partes de la hoja).
+ * 2. Phi (Esféricas) se calcula usando la relación de arcotangente (r/z).
  */
 public class Convertidor {
 
-    /**
-     * Realiza la conversión de cualquier coordenada de origen a un tipo de destino específico.
-     * La estrategia es: Origen -> Cartesiana -> Destino.
-     * * @param origen La coordenada a convertir (implementa Coordenada).
-     * @param tipoDestino La Clase del tipo de coordenada deseado (ej. Polares.class).
-     * @return Una nueva instancia del tipo de coordenada de destino.
-     * @throws IllegalArgumentException si el tipo de destino no es conocido.
-     */
     public Coordenada convertir(Coordenada origen, Class<?> tipoDestino) {
-        // Paso 1: Convertir el origen a la base Cartesiana (x, y, z)
-        // Esto funciona sin importar el tipo de 'origen' (LSP).
+        // Paso 1: Convertir cualquier origen a Cartesiana (x, y, z)
         Cartesiana cartesiana = origen.aCartesiana();
 
         double x = cartesiana.getX();
         double y = cartesiana.getY();
         double z = cartesiana.getZ();
 
-        // Paso 2: Aplicar la conversión inversa desde Cartesiano al destino deseado.
-        
+        // Si el destino es Cartesiana, ya terminamos
         if (tipoDestino.equals(Cartesiana.class)) {
-            // Caso 1: El destino ya es Cartesiano (se devuelve la versión convertida)
             return cartesiana;
         } 
         
+        // --- CÁLCULOS AUXILIARES (según tu hoja) ---
+        // r = sqrt(x^2 + y^2) -> Distancia en el plano XY
+        double r = Math.sqrt(x * x + y * y);
+        
+        // Theta = atan2(y, x) -> Esto cubre TODOS los casos de la llave en tu hoja:
+        // Si x>0, y>0 -> arctan(y/x)
+        // Si x<0 -> pi + arctan(y/x), etc.
+        double theta = Math.atan2(y, x);
+
+        // --- CONVERSIONES ---
+
         if (tipoDestino.equals(Polares.class)) {
-            // Caso 2: De Cartesiano (x, y, z) a Polar (r, theta, z)
-            double radio = Math.sqrt(x*x + y*y);
-            // atan2 es mejor que atan ya que maneja los 4 cuadrantes y divisiones por cero.
-            double angulo = Math.atan2(y, x);
-            double altura = z;
-            return new Polares(radio, angulo, altura);
+            // Hoja: (r cos θ, r sen θ) -> Ya tenemos r y theta.
+            // Asumimos z se mantiene igual para coordenadas cilíndricas/polares 3D
+            return new Polares(r, theta, z);
         } 
         
         if (tipoDestino.equals(Cilindricas.class)) {
-            // Caso 3: De Cartesiano (x, y, z) a Cilíndrica (r, theta, z)
-            // (La misma fórmula que Polar en 3D)
-            double radio = Math.sqrt(x*x + y*y);
-            double angulo = Math.atan2(y, x);
-            double altura = z;
-            return new Cilindricas(radio, angulo, altura);
+            // Hoja: Mismas fórmulas que Polares + z
+            return new Cilindricas(r, theta, z);
         }
         
         if (tipoDestino.equals(Esfericas.class)) {
-            // Caso 4: De Cartesiano (x, y, z) a Esférica (rho, theta, phi)
-            double rho = Math.sqrt(x*x + y*y + z*z);
-            double theta = Math.atan2(y, x);
+            // Hoja: rho = sqrt(x^2 + y^2 + z^2)
+            double rho = Math.sqrt(x * x + y * y + z * z);
 
-            // Evitar división por cero si rho es 0 (punto en el origen)
-            double phi = (rho == 0) ? 0 : Math.acos(z / rho);
+            // Hoja: phi = arctan(r / z)
+            // Usamos atan2(r, z) en lugar de atan(r/z) para evitar división por cero si z=0,
+            // pero matemáticamente es la misma fórmula de tu hoja.
+            double phi = Math.atan2(r, z);
             
             return new Esfericas(rho, theta, phi);
         }
         
-        // Si la clase de destino no es reconocida, lanza una excepción
-        throw new IllegalArgumentException("Tipo de coordenada de destino no soportado: " + tipoDestino.getSimpleName());
+        throw new IllegalArgumentException("Tipo de destino no soportado: " + tipoDestino.getSimpleName());
     }
 }

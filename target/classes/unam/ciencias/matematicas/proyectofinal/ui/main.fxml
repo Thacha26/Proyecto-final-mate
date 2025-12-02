@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" spacing="20.0" style="-fx-background-color: #f4f7f9;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unam.ciencias.matematicas.proyectofinal.ui.MainController">
+<VBox alignment="TOP_CENTER" spacing="20.0" style="-fx-background-color: #98cff4ff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unam.ciencias.matematicas.proyectofinal.ui.controladorPrincipal">
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
@@ -18,7 +18,7 @@
          <Font name="System Bold" size="24.0" />
       </font>
    </Label>
-   <Label fx:id="mensajeError" textFill="#e53935" visible="false">
+   <Label fx:id="mensajeError" textFill="#691210ff" visible="false">
       <font>
          <Font size="14.0" />
       </font>

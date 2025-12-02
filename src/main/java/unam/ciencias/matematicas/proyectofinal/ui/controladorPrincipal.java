@@ -5,8 +5,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import unam.ciencias.matematicas.proyectofinal.coordenada.*;
-import unam.ciencias.matematicas.proyectofinal.conversiones.Convertidor;
+// VERIFICAR ESTAS IMPORTACIONES: deben coincidir con tus nombres de paquete y clases.
+import unam.ciencias.matematicas.proyectofinal.coordenada.*; 
+import unam.ciencias.matematicas.proyectofinal.conversion.Convertidor; 
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,6 +16,7 @@ import java.util.Map;
  * Controlador de la interfaz gráfica (GUI) de JavaFX.
  * Se encarga de la interacción del usuario, la validación y la presentación de resultados.
  */
+// **ATENCIÓN: EL NOMBRE DE ESTA CLASE DEBE COINCIDIR CON EL NOMBRE DEL ARCHIVO (ControladorPrincipal)**
 public class controladorPrincipal {
 
     // Componentes de la interfaz inyectados desde main.fxml
