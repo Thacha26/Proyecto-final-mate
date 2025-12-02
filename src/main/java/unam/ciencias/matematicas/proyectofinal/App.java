@@ -1,22 +1,30 @@
-package unam.ciencias.matematicas.proyectofinal.coordenadas;
+package unam.ciencias.matematicas.proyectofinal;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
  * Clase principal que arranca la aplicación JavaFX.
- * No contiene lógica de coordenadas ni conversiones,
- * solo inicializa la interfaz gráfica definida en main.fxml.
+ * Se encarga de cargar el layout FXML y configurar la ventana principal.
  */
-public class App {
+public class App extends Application {
 
-    @Override public void start(Stage stage) throws Exception {
-        // Aquí va su código: cargar el archivo FXML, crear la escena y mostrar la ventana.
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        // Carga el layout de la interfaz usando la ruta ABSOLUTA del classpath,
+        // asegurando que Maven y JavaFX lo encuentren correctamente.
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/unam/ciencias/matematicas/proyectofinal/ui/main.fxml"));
+        Parent root = loader.load();
+
+        primaryStage.setTitle("Proyecto Final - Conversor de Coordenadas");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
     }
 
     public static void main(String[] args) {
-        // Aquí va su código: lanzar la aplicación JavaFX.
+        launch(args);
     }
 }

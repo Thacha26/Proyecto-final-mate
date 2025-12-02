@@ -1,50 +1,47 @@
 package unam.ciencias.matematicas.proyectofinal.coordenada;
 
-
 /**
- * Clase que representa coordenadas cartesianas (x, y, z).
+ * Modela un punto en el sistema de coordenadas Cartesiano (x, y, z).
  */
 public class Cartesiana implements Coordenada {
-
-    /** Valores de la coordenada. */
-    private double x, y, z;
-
-    /**
-     * Constructor para coordenadas 2D.
-     * @param x valor en eje X.
-     * @param y valor en eje Y.
-     */
-    public Cartesiana(double x, double y) {
-        // Aquí va su código.
-    }
+    private final double x;
+    private final double y;
+    private final double z;
 
     /**
-     * Constructor para coordenadas 3D.
-     * @param x valor en eje X.
-     * @param y valor en eje Y.
-     * @param z valor en eje Z.
+     * Constructor para coordenadas Cartesianas.
+     * @param x Componente x.
+     * @param y Componente y.
+     * @param z Componente z.
      */
     public Cartesiana(double x, double y, double z) {
-        // Aquí va su código.
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
 
-    /** Métodos getX(), getY(), getZ(). */
-    public double getX() { /* Aquí va su código. */ }
-    public double getY() { /* Aquí va su código. */ }
-    public double getZ() { /* Aquí va su código. */ }
-
-    @Override 
-    public int dimension() {
-        // Aquí va su código: devolver 2 o 3 según corresponda.
-    }
-
-    @Override 
+    // --- Implementación de la Interfaz Coordenada ---
+    @Override
     public Cartesiana aCartesiana() {
-        // Aquí va su código: devolver this.
+        // Un punto Cartesiano ya está en su propia forma cartesiana.
+        return this;
     }
 
-    @Override 
+    // --- Getters específicos ---
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public double getZ() {
+        return z;
+    }
+
+    @Override
     public String toString() {
-        // Aquí va su código: devolver "(x, y, z)".
+        return String.format("Cartesiana(x=%.4f, y=%.4f, z=%.4f)", x, y, z);
     }
 }
