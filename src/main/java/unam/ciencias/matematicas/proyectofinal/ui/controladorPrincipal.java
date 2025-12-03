@@ -5,7 +5,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-// VERIFICAR ESTAS IMPORTACIONES: deben coincidir con tus nombres de paquete y clases.
 import unam.ciencias.matematicas.proyectofinal.coordenada.*; 
 import unam.ciencias.matematicas.proyectofinal.conversion.Convertidor; 
 
@@ -16,10 +15,8 @@ import java.util.Map;
  * Controlador de la interfaz gráfica (GUI) de JavaFX.
  * Se encarga de la interacción del usuario, la validación y la presentación de resultados.
  */
-// **ATENCIÓN: EL NOMBRE DE ESTA CLASE DEBE COINCIDIR CON EL NOMBRE DEL ARCHIVO (ControladorPrincipal)**
 public class controladorPrincipal {
 
-    // Componentes de la interfaz inyectados desde main.fxml
     @FXML private ComboBox<String> comboOrigen;
     @FXML private ComboBox<String> comboDestino;
     
@@ -37,7 +34,6 @@ public class controladorPrincipal {
 
     private Convertidor convertidor = new Convertidor();
     
-    // Mapeo de nombres en String a sus clases Java reales
     private final Map<String, Class<? extends Coordenada>> mapaTipos = new HashMap<>();
 
     /**
@@ -45,13 +41,11 @@ public class controladorPrincipal {
      */
     @FXML
     public void initialize() {
-        // Llenar el mapa de tipos
         mapaTipos.put("Cartesiana", Cartesiana.class);
         mapaTipos.put("Polar", Polares.class);
         mapaTipos.put("Cilíndrica", Cilindricas.class);
         mapaTipos.put("Esférica", Esfericas.class);
 
-        // Nombres de los sistemas para los ComboBox
         ObservableList<String> sistemas = FXCollections.observableArrayList(
                 "Cartesiana", "Polar", "Cilíndrica", "Esférica"
         );
@@ -59,19 +53,15 @@ public class controladorPrincipal {
         comboOrigen.setItems(sistemas);
         comboDestino.setItems(sistemas);
         
-        // Establecer valores predeterminados
         comboOrigen.getSelectionModel().select("Cartesiana");
         comboDestino.getSelectionModel().select("Esférica");
         
-        // Configurar listener para actualizar etiquetas al cambiar el origen
         comboOrigen.getSelectionModel().selectedItemProperty().addListener(
             (observable, valorAnterior, valorNuevo) -> actualizarEtiquetas(valorNuevo)
         );
         
-        // Inicializar etiquetas con el valor predeterminado
         actualizarEtiquetas("Cartesiana");
         
-        // Inicializar mensaje de error oculto
         mensajeError.setVisible(false);
     }
     
@@ -80,7 +70,6 @@ public class controladorPrincipal {
      * @param sistema El nombre del sistema seleccionado.
      */
     private void actualizarEtiquetas(String sistema) {
-        // Asegurar que el sistema no sea nulo (puede ser nulo al inicio)
         if (sistema == null) return;
 
         switch (sistema) {
@@ -111,7 +100,6 @@ public class controladorPrincipal {
                 break;
         }
         
-        // Limpiar campos y resultado al cambiar el sistema
         campoComp1.clear();
         campoComp2.clear();
         campoComp3.clear();
@@ -130,29 +118,22 @@ public class controladorPrincipal {
         resultadoFinal.setText("Resultado:");
         
         try {
-            // 1. Obtener y validar valores numéricos
             double valor1 = obtenerValor(campoComp1.getText());
             double valor2 = obtenerValor(campoComp2.getText());
             double valor3 = obtenerValor(campoComp3.getText());
             
-            // 2. Obtener las clases de origen y destino
             String nombreOrigen = comboOrigen.getSelectionModel().getSelectedItem();
             String nombreDestino = comboDestino.getSelectionModel().getSelectedItem();
             
             Class<? extends Coordenada> claseOrigen = mapaTipos.get(nombreOrigen);
             Class<? extends Coordenada> claseDestino = mapaTipos.get(nombreDestino);
 
-            // 3. Crear el objeto Coordenada de origen
             Coordenada coordOrigen = crearCoordenada(claseOrigen, valor1, valor2, valor3);
-            
-            // 4. Realizar la conversión
             Coordenada coordResultado = convertidor.convertir(coordOrigen, claseDestino);
-            
-            // 5. Mostrar el resultado
             resultadoFinal.setText("Resultado: " + coordResultado.toString());
 
         } catch (NumberFormatException e) {
-            mostrarError("Error de entrada: Asegúrate de ingresar solo números válidos.");
+            mostrarError("Error!!!: Asegúrate de ingresar solo números válidos.");
         } catch (IllegalArgumentException e) {
             mostrarError("Error lógico: " + e.getMessage());
         } catch (Exception e) {
@@ -183,11 +164,9 @@ public class controladorPrincipal {
      */
     private Coordenada crearCoordenada(Class<? extends Coordenada> clase, double v1, double v2, double v3) {
         try {
-            // Asume que todas las clases tienen un constructor (double, double, double)
             return clase.getDeclaredConstructor(double.class, double.class, double.class)
                          .newInstance(v1, v2, v3);
         } catch (Exception e) {
-            // Error si no se puede crear la instancia (ej. constructor faltante)
             throw new IllegalArgumentException("No se pudo crear la coordenada: " + clase.getSimpleName());
         }
     }

@@ -20,7 +20,6 @@ public class Esfericas implements Coordenada {
         this.phi = phi;
     }
 
-    // --- Conversión a Cartesiano ---
     @Override
     public Cartesiana aCartesiana() {
         // Fórmulas de Esférica (rho, theta, phi) a Cartesiano (x, y, z)
@@ -34,7 +33,6 @@ public class Esfericas implements Coordenada {
         return new Cartesiana(x, y, z);
     }
 
-    // --- Getters específicos ---
     public double getRho() { return rho; }
     public double getTheta() { return theta; }
     public double getPhi() { return phi; }

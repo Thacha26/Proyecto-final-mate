@@ -14,8 +14,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        // Carga el layout de la interfaz usando la ruta ABSOLUTA del classpath,
-        // asegurando que Maven y JavaFX lo encuentren correctamente.
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/unam/ciencias/matematicas/proyectofinal/ui/main.fxml"));
         Parent root = loader.load();
 

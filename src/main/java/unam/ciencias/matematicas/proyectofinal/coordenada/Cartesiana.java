@@ -20,14 +20,11 @@ public class Cartesiana implements Coordenada {
         this.z = z;
     }
 
-    // --- Implementación de la Interfaz Coordenada ---
     @Override
     public Cartesiana aCartesiana() {
-        // Un punto Cartesiano ya está en su propia forma cartesiana.
         return this;
     }
 
-    // --- Getters específicos ---
     public double getX() {
         return x;
     }

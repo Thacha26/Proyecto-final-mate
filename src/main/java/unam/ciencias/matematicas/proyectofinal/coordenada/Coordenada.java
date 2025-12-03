@@ -1,7 +1,7 @@
 package unam.ciencias.matematicas.proyectofinal.coordenada;
 
 /**
- * Interfaz fundamental para todas las clases de coordenadas.
+ * Interfaz 
  * Obliga a cada sistema a saber cómo convertirse a la base Cartesiana (x, y, z),
  * lo que centraliza la lógica de conversión en el Convertidor.
  */
