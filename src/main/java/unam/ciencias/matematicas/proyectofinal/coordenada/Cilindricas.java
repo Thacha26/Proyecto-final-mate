@@ -17,10 +17,9 @@ public class Cilindricas implements Coordenada {
         this.altura = altura;
     }
 
-    // --- Conversión a Cartesiano ---
+    // Fórmulas de Cilíndrica (r, theta, z) a Cartesiano (x, y, z)
     @Override
     public Cartesiana aCartesiana() {
-        // Fórmulas de Cilíndrica (r, theta, z) a Cartesiano (x, y, z)
         double x = radio * Math.cos(angulo);
         double y = radio * Math.sin(angulo);
         double z = altura; 
@@ -28,7 +27,6 @@ public class Cilindricas implements Coordenada {
         return new Cartesiana(x, y, z);
     }
 
-    // --- Getters específicos ---
     public double getRadio() { return radio; }
     public double getAngulo() { return angulo; }
     public double getAltura() { return altura; }

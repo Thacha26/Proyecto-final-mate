@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" spacing="20.0" style="-fx-background-color: #98cff4ff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unam.ciencias.matematicas.proyectofinal.ui.controladorPrincipal">
+<VBox alignment="TOP_CENTER" spacing="20.0" style="-fx-background-color: #0b9dff34;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unam.ciencias.matematicas.proyectofinal.ui.controladorPrincipal">
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
-   <Label text="Conversor de Coordenadas 3D">
+   <Label text="Conversor de Coordenadas">
       <font>
          <Font name="System Bold" size="24.0" />
       </font>
@@ -43,28 +43,28 @@
       
       <!-- Componentes de entrada (Etiquetas se actualizarán con JS) -->
       <Label fx:id="etiquetaComp1" text="Comp 1:" GridPane.rowIndex="1" />
-      <TextField fx:id="campoComp1" promptText="Valor 1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <TextField fx:id="campoComp1" promptText=" " GridPane.columnIndex="1" GridPane.rowIndex="1" />
       
       <Label fx:id="etiquetaComp2" text="Comp 2:" GridPane.rowIndex="2" />
-      <TextField fx:id="campoComp2" promptText="Valor 2" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <TextField fx:id="campoComp2" promptText=" " GridPane.columnIndex="1" GridPane.rowIndex="2" />
       
       <Label fx:id="etiquetaComp3" text="Comp 3:" GridPane.rowIndex="3" />
-      <TextField fx:id="campoComp3" promptText="Valor 3" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <TextField fx:id="campoComp3" promptText=" " GridPane.columnIndex="1" GridPane.rowIndex="3" />
       
       <Label style="-fx-font-weight: bold;" text="Sistema de Destino:" GridPane.rowIndex="4" />
       <ComboBox fx:id="comboDestino" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
       
    </GridPane>
    
-   <Button fx:id="botonConvertir" onAction="#manejarConversion" prefWidth="200.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold;" text="Convertir Coordenadas" />
+   <Button fx:id="botonConvertir" onAction="#manejarConversion" prefWidth="200.0" style="-fx-background-color: #079310ff; -fx-text-fill: white; -fx-font-weight: bold;" text="Convertir Coordenadas" />
    
    <!-- SECCIÓN DE RESULTADOS -->
    <VBox spacing="10.0">
-      <Label text="Resultados" style="-fx-font-weight: bold; -fx-underline: true;">
+      <Label text="Resultados" style="-fx-font-weight: bold; -fx-underline: false;">
          <font>
             <Font size="16.0" />
          </font>
-      </Label>
+      </Label> 
       <Label fx:id="resultadoFinal" text="Resultado: " wrapText="true">
          <font>
             <Font size="14.0" />

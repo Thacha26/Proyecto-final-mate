@@ -18,7 +18,6 @@ public class Polares implements Coordenada {
         this.altura = altura;
     }
 
-    // --- Conversión a Cartesiano ---
     @Override
     public Cartesiana aCartesiana() {
         // Fórmulas de Polar (r, theta, z) a Cartesiano (x, y, z)
@@ -29,7 +28,6 @@ public class Polares implements Coordenada {
         return new Cartesiana(x, y, z);
     }
 
-    // --- Getters específicos ---
     public double getRadio() { return radio; }
     public double getAngulo() { return angulo; }
     public double getAltura() { return altura; }
